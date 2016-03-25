@@ -43,46 +43,46 @@ namespace ITI2016.Dev
         void Remove( T e );
     }
 
-    public struct KeyValuePair<TKey,TValue>
+    public struct KeyValuePair<TKey, TValue>
     {
         public readonly TKey Key;
         public readonly TValue Value;
 
-        public KeyValuePair( TKey key, TValue value )
+        public KeyValuePair(TKey Key, TValue Value)
         {
-            Key = key;
-            Value = value;
+            this.Key = Key;
+            this.Value = Value;
         }
     }
 
-    public interface IDictionary<TKey, TValue> : IReadOnlyCollection<KeyValuePair<TKey,TValue>>
+    public interface IDictionary<TKey, TValue> : IReadOnlyCollection<KeyValuePair<TKey, TValue>>
     {
         IEnumerable<TKey> Keys { get; }
-
+        
         IEnumerable<TValue> Values { get; }
 
-        bool ContainsKey( TKey k );
+        bool ContainsKey(TKey key);
+
+        bool ContainsValue(TValue value);
+
+        bool Remove(TKey key);
 
         /// <summary>
-        /// Checks whether this dictionary contains the given value.
-        /// Caution: this is an O(n) operation!
+        /// Gets or setss the value associated to the given key.
+        /// When ggetting, the key MUST exist otherwise a <see cref="KeyNotFoundException"/> is thrown
         /// </summary>
-        /// <param name="v">The value to lookup.</param>
-        /// <returns>Tru when found, false otherwise.</returns>
-        bool ContainsValue( TValue v );
+        /// <param name="key">The key</param>
+        /// <returns>The associated value</returns>
+        TValue this[TKey key] { get; set; }
 
         /// <summary>
-        /// Removes a key/value pair.
+        /// Adds a key/value pair. The key MUST NOT exsit otherwise an exception is thrown
         /// </summary>
-        /// <param name="key">The key to remove.</param>
-        /// <returns>True if the key has been found and removed, false otherwise.</returns>
-        bool Remove( TKey key );
+        /// <param name="key">The key</param>
+        /// <param name="value">The associated value</param>
+        void Add(TKey key, TValue value);
+    }
 
-        /// <summary>
-        /// Gets or sets the value associated to the given key.
-        /// When getting, the key MUST exist otherwise a <see cref="KeyNotFoundException"/> is 
-        /// thrown.
-        /// </summary>
         /// <param name="k">The key.</param>
         /// <returns>The associated value.</returns>
         TValue this[TKey k] { get; set; }
