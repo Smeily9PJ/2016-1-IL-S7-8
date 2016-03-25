@@ -44,6 +44,46 @@ namespace ITI2016.Dev
         void Remove( T e );
     }
 
+    public struct KeyValuePair<TKey, TValue>
+    {
+        public readonly TKey Key;
+        public readonly TValue Value;
+
+        public KeyValuePair(TKey Key, TValue Value)
+        {
+            this.Key = Key;
+            this.Value = Value;
+        }
+    }
+
+    public interface IDictionary<TKey, TValue> : IReadOnlyCollection<KeyValuePair<TKey, TValue>>
+    {
+        IEnumerable<TKey> Keys { get; }
+        
+        IEnumerable<TValue> Values { get; }
+
+        bool ContainsKey(TKey key);
+
+        bool ContainsValue(TValue value);
+
+        bool Remove(TKey key);
+
+        /// <summary>
+        /// Gets or setss the value associated to the given key.
+        /// When ggetting, the key MUST exist otherwise a <see cref="KeyNotFoundException"/> is thrown
+        /// </summary>
+        /// <param name="key">The key</param>
+        /// <returns>The associated value</returns>
+        TValue this[TKey key] { get; set; }
+
+        /// <summary>
+        /// Adds a key/value pair. The key MUST NOT exsit otherwise an exception is thrown
+        /// </summary>
+        /// <param name="key">The key</param>
+        /// <param name="value">The associated value</param>
+        void Add(TKey key, TValue value);
+    }
+
     public interface IEnumerator<T>
     {
         bool MoveNext();
