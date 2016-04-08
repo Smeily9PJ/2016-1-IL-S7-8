@@ -83,20 +83,6 @@ namespace ITI2016.Dev
         void Add(TKey key, TValue value);
     }
 
-        /// <param name="k">The key.</param>
-        /// <returns>The associated value.</returns>
-        TValue this[TKey k] { get; set; }
-
-        /// <summary>
-        /// Adds a key/value pair. The key MUST NOT exist otherwise an exception is thrown.
-        /// </summary>
-        /// <param name="k">The key to add.</param>
-        /// <param name="v">The associated value.</param>
-        void Add( TKey k, TValue v );
-
-        bool TryGetValue( TKey k, out TValue v );
-    }
-
     public interface IEnumerator<T> : IDisposable
     {
         bool MoveNext();
