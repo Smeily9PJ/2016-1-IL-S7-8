@@ -10,7 +10,7 @@ namespace ITI2016.Dev.Tests
     [TestFixture]
     public class DictionaryTests
     {
-        [Test]
+      /*  [Test]
         public void dictionary_with_string_keys()
         {
             IDictionary<string, int> dic = new Dictionary<string, int>( StringComparer.InvariantCultureIgnoreCase );
@@ -120,6 +120,6 @@ namespace ITI2016.Dev.Tests
                     }
                 }
             }
-        }
+        }*/
     }
 }
