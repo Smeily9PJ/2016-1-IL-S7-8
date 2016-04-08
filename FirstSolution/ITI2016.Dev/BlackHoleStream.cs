@@ -9,8 +9,6 @@ namespace ITI2016.Dev
 {
     public class BlackHoleStream : Stream
     {
-        long _pos;
-
         public override bool CanRead => true;
 
         public override bool CanSeek => true;
@@ -25,16 +23,28 @@ namespace ITI2016.Dev
         {
         }
 
-        public override int Read( byte[] buffer, int offset, int count )
-        {
-            for (int i = 0; i < count; i++) buffer[offset + i] = 0; ;
-            Position += count;
-            return count;
-        }
-
         public override long Seek( long offset, SeekOrigin origin )
         {
-            switch (origin)
+            switch( origin )
+            {
+                case SeekOrigin.Begin:
+                    Position = offset;
+                    break;
+                case SeekOrigin.Current:
+                    Position += offset;
+                    break;
+                case SeekOrigin.End:
+                    Position = long.MaxValue + offset;
+                    break;
+                default:
+                    break;
+            }
+            return Position;
+        }
+
+        public override void SetLength( long value )
+        {
+            throw new NotSupportedException();
             {
                 case SeekOrigin.Begin:
                     Position = offset;
@@ -51,12 +61,14 @@ namespace ITI2016.Dev
             return Position;
         }
 
-        public override void SetLength( long value )
+        public override int Read( byte[] buffer, int offsetInBuffer, int count )
         {
-            throw new NotSupportedException();
+            for( int i = 0; i < count; ++i ) buffer[offsetInBuffer + i] = 0;
+            Position += count;
+            return count;
         }
 
-        public override void Write( byte[] buffer, int offset, int count )
+        public override void Write( byte[] buffer, int offsetInBuffer, int count )
         {
             Position += count;
         }
