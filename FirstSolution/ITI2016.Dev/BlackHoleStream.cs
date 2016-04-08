@@ -45,20 +45,6 @@ namespace ITI2016.Dev
         public override void SetLength( long value )
         {
             throw new NotSupportedException();
-            {
-                case SeekOrigin.Begin:
-                    Position = offset;
-                    break;
-                case SeekOrigin.Current:
-                    Position = +offset;
-                    break;
-                case SeekOrigin.End:
-                    Position = long.MaxValue + offset;
-                    break;
-                default:
-                    break;
-            }
-            return Position;
         }
 
         public override int Read( byte[] buffer, int offsetInBuffer, int count )
