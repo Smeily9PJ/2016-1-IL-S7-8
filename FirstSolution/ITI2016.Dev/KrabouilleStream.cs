@@ -94,13 +94,20 @@ namespace ITI2016.Dev
             if( !CanWrite ) throw new NotSupportedException();
             if( buffer == null ) throw new ArgumentNullException( nameof( buffer ) );
             if( offset < 0 || buffer.Length > offset + count ) throw new ArgumentException();
-            // This has an horrible side effect!
-            for( int i = 0; i < count; ++i )
+            if ( count > 0)
             {
-                buffer[offset + i] ^= _secret[_position % _secret.Length];
+                writeBuffer( count);
+            }
+        }
+
+        private void writeBuffer(int count)
+        {
+            for (int i = 0; i < count; ++i)
+            {
+                _writeBuffer[i] ^= _secret[_position % _secret.Length];
                 ++_position;
             }
-            _inner.Write( buffer, offset, count );
+            _inner.Write(_writeBuffer, 0, count);
         }
     }
 }
