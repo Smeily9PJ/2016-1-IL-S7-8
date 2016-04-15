@@ -12,7 +12,10 @@ namespace ITI2016.Dev.Tests
     [TestFixture]
     public class StreamTests
     {
+        string whites = "                                                                               ";
         const string _inputFile = @"C:\_work\iti\s8\git\FirstSolution\ITI2016.Dev.Tests\StreamTests.cs";
+
+        const string _inputFile = @"C:\Intech\2016-1\S7-8\2016-1-IL-S7-8\FirstSolution\ITI2016.Dev.Tests\StreamTests.cs";
 
         static string GetOutputFile( string originalFile, string suffixe )
         {
@@ -113,6 +116,7 @@ namespace ITI2016.Dev.Tests
         {
             string kFile = GetOutputFile( _inputFile, ".K" );
 
+            if( File.Exists( kFile ) ) File.Delete( kFile );
             using( Stream input = File.OpenRead( _inputFile ) )
             using( Stream output = File.OpenWrite( kFile ) )
             using( Stream krab = new KrabouilleStream( output, KrabouilleMode.Krabouille, "My Secret..." ) )
@@ -125,7 +129,7 @@ namespace ITI2016.Dev.Tests
 
             using( Stream input = File.OpenRead( kFile ) )
             using( Stream deKrab = new KrabouilleStream( input, KrabouilleMode.UnKrabouille, "My Secret..." ) )
-            using( Stream output = File.OpenWrite( kdFile ) )
+            using( Stream output = new FileStream( kdFile, FileMode.Create, FileAccess.Write ) )
             {
                 deKrab.CopyTo( output, bufferSize );
             }
