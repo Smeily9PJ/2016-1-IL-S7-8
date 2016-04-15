@@ -93,7 +93,7 @@ namespace ITI2016.Dev
         {
             if( !CanWrite ) throw new NotSupportedException();
             if( buffer == null ) throw new ArgumentNullException( nameof( buffer ) );
-            if( offset < 0 || buffer.Length > offset + count ) throw new ArgumentException();
+            if( offset < 0 || buffer.Length <= offset + count ) throw new ArgumentException();
             if ( count > 0)
             while( count > _writeBuffer.Length )
             {
