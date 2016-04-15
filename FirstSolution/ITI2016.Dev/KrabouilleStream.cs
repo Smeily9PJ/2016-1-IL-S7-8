@@ -100,14 +100,14 @@ namespace ITI2016.Dev
             if( !CanWrite ) throw new NotSupportedException();
             if( buffer == null ) throw new ArgumentNullException( nameof( buffer ) );
             if( offset < 0 || buffer.Length < offset + count ) throw new ArgumentException();
-            while( count > _writeBuffer.Length )
+            if ( count > 0)
             {
-                Array.Copy( buffer, offset, _writeBuffer, 0, _writeBuffer.Length );
-                SendWriteBuffer( _writeBuffer.Length );
-                count -= _writeBuffer.Length;
-                offset += _writeBuffer.Length;
+                writeBuffer( count);
             }
-            if( count > 0 )
+        }
+
+        private void writeBuffer(int count)
+        {
             {
                 Array.Copy( buffer, offset, _writeBuffer, 0, count );
                 SendWriteBuffer( count );
@@ -116,14 +116,14 @@ namespace ITI2016.Dev
 
         private void SendWriteBuffer( int count )
         {
-            for( int i = 0; i < count; ++i )
+            for (int i = 0; i < count; ++i)
             {
-                byte c = (byte)(_writeBuffer[i] ^ _secret[_position % _secret.Length]);
+                _writeBuffer[i] ^= _secret[_position % _secret.Length];
                 _writeBuffer[i] = c;
                 _secret[_position % _secret.Length] = c;
                 ++_position;
             }
-            _inner.Write( _writeBuffer, 0, count );
+            _inner.Write(_writeBuffer, 0, count);
         }
     }
 }
