@@ -116,7 +116,7 @@ namespace ITI2016.Dev
 
         private void SendWriteBuffer( int count )
         {
-            for( int i = 0; i < count; ++i )
+            for (int i = 0; i < count; ++i)
             {
                 byte c = (byte)(_writeBuffer[i] ^ _secret[_position % _secret.Length]);
                 _writeBuffer[i] = c;
