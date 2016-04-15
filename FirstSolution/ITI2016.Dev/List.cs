@@ -17,10 +17,10 @@ namespace ITI2016.Dev
             _array = new T[4];
         }
 
-        public List( params T[] args )
+        public List(params T[] args)
         {
             _array = (T[])args.Clone();
-            _count = _array.Length;
+            _count = args.Length;
         }
 
         public T this[int i]
