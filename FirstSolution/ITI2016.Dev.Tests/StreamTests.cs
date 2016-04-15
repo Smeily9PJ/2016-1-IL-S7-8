@@ -12,10 +12,8 @@ namespace ITI2016.Dev.Tests
     [TestFixture]
     public class StreamTests
     {
-        string whites = "                                                                               ";
         const string _inputFile = @"C:\_work\iti\s8\git\FirstSolution\ITI2016.Dev.Tests\StreamTests.cs";
 
-        const string _inputFile = @"C:\Intech\2016-1\S7-8\2016-1-IL-S7-8\FirstSolution\ITI2016.Dev.Tests\StreamTests.cs";
 
         static string GetOutputFile( string originalFile, string suffixe )
         {
