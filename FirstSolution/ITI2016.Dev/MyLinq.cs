@@ -97,20 +97,67 @@ namespace ITI2016.Dev
         /// Filtered container: only items for which <paramref name="predicate"/> 
         /// evaluates to true are kept.
         /// </returns>
-        public static IEnumerable<T> Where<T>( this IEnumerable<T> container, Func<T,bool> predicate )
+        public static IEnumerable<T> Where<T>( this IEnumerable<T> container, Func<T, bool> predicate )
         {
             return new EWhere<T>( container, predicate );
         }
 
-        public static IEnumerable<TResult> Select<T, TResult>(this IEnumerable<T> container, Func<T,TResult> result)
+        class ESelect<T, TResult> : IEnumerable<T>
         {
-            var r = new List<TResult>();
-            var e = container.GetEnumerator();
-            while (e.MoveNext())
+            readonly IEnumerable<T> _container;
+            readonly Func<T, TResult> _proj;
+
+            public ESelect( IEnumerable<T> container, Func<T, TResult> proj )
             {
-                r.Add(result(e.Current));
+                _container = container;
+                _proj = proj;
             }
-            return r;
+
+            class E : IEnumerator<TResult>
+            {
+                readonly ESelect<T,TResult> _holderE;
+                readonly IEnumerator<T> _inSource;
+                TResult _current;
+                bool _currentHasBeenComputed;
+
+                public E( ESelect<T,TResult> h )
+                {
+                    _holderE = h;
+                    _inSource = _holderE._container.GetEnumerator();
+                }
+
+                public TResult Current
+                {
+                    get
+                    {
+                        if( !_currentHasBeenComputed )
+                        {
+                            _current = _holderE._proj( _inSource.Current );
+                            _currentHasBeenComputed = true;
+                        }
+                        return _current;
+                    }
+                }
+                public bool MoveNext()
+                {
+                    _currentHasBeenComputed = false;
+                    return _inSource.MoveNext();
+                }
+
+                public void Dispose() { }
+
+            }
+
+            public IEnumerator<T> GetEnumerator()
+            {
+                return new E( this );
+            }
+        }
+
+
+        public static IEnumerable<TResult> Select<T, TResult>( this IEnumerable<T> container, Func<T, TResult> projection )
+        {
+            return new ESelect<T>( container, projection );
         }
 
     }
