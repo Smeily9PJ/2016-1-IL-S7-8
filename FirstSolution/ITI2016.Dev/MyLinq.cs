@@ -55,6 +55,32 @@ namespace ITI2016.Dev
 
             }
 
+            class E : IEnumerator<T>
+            {
+                readonly EWhere<T> _holderE;
+                readonly IEnumerator<T> _inSource;
+
+                public E(EWhere<T> h)
+                {
+                    _holderE = h;
+                    _inSource = _holderE._container.GetEnumerator();
+                }
+
+                public T Current => _inSource.Current;
+
+                public bool MoveNext()
+                {
+                    while (_inSource.MoveNext())
+                    {
+                        if (_holderE._predicate(_inSource.Current)) return true;
+                    }
+                    return false;
+                }
+
+                public void Dispose() { }
+
+            }
+
             public IEnumerator<T> GetEnumerator()
             {
                 return new E( this );
@@ -74,6 +100,17 @@ namespace ITI2016.Dev
         public static IEnumerable<T> Where<T>( this IEnumerable<T> container, Func<T,bool> predicate )
         {
             return new EWhere<T>( container, predicate );
+        }
+
+        public static IEnumerable<TResult> Select<T, TResult>(this IEnumerable<T> container, Func<T,TResult> result)
+        {
+            var r = new List<TResult>();
+            var e = container.GetEnumerator();
+            while (e.MoveNext())
+            {
+                r.Add(result(e.Current));
+            }
+            return r;
         }
 
     }
