@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // Les informations générales relatives à un assembly dépendent de 
 // l'ensemble d'attributs suivant. Changez les valeurs de ces attributs pour modifier les informations
 // associées à un assembly.
-[assembly: AssemblyTitle("NS.CalviScript")]
+[assembly: AssemblyTitle("NS.CalviScript.Tests")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("NS.CalviScript")]
+[assembly: AssemblyProduct("NS.CalviScript.Tests")]
 [assembly: AssemblyCopyright("Copyright ©  2016")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // Le GUID suivant est pour l'ID de la typelib si ce projet est exposé à COM
-[assembly: Guid("5e145ce9-05ee-4f4c-bc19-0e55e0ac1c67")]
+[assembly: Guid("db520f4d-2dd6-4fe6-b89a-c0caf1e9a4dc")]
 
 // Les informations de version pour un assembly se composent des quatre valeurs suivantes :
 //

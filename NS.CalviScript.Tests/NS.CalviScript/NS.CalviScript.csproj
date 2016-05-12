@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>5e145ce9-05ee-4f4c-bc19-0e55e0ac1c67</ProjectGuid>
+    <ProjectGuid>4de56ce7-9ffc-4b0e-8ac0-4bc99bd5d987</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>NS.CalviScript</RootNamespace>
