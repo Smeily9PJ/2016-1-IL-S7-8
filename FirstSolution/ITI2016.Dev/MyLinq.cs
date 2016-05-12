@@ -102,6 +102,49 @@ namespace ITI2016.Dev
             return new EWhere<T>( container, predicate );
         }
 
+        public static System.Collections.Generic.IEnumerable<T> Where2<T>(this IEnumerable<T> container, Func<T, bool> predicate)
+        {
+            foreach (var item in container)
+            {
+                if (predicate(item)) yield return item;
+            }
+        }
+
+
+        public static IEnumerable<TResult> Select<T, TResult>(this IEnumerable<T> container, Func<T, TResult> projection)
+        {
+            return new ESelect<T>(container, projection);
+        }
+
+
+        private void SubMethod(System.Collections.Generic.IEnumerable<int> list)
+        {
+            var e = Enumerable.Empty<IPV4>();
+            var ints = Enumerable.Range(0, 2000)
+                    .Select(y => new DateTime(y, 1, 1).DayOfYear);
+            foreach (var dayName in ints)
+            {
+                Console.WriteLine(dayName);
+            }
+            if(list.Any(i => (i&1) != 0)){
+
+            }
+            foreach (var inFirstHundred in list.Take(200))
+            {
+
+            }
+            foreach (var inFirstHundredAfter20 in list.Skip(20).Take(100))
+            {
+
+            }
+            foreach (var ordered in list.OrderBy(i => Math.Cos(i)))
+            {
+
+            }
+        }
+
+        static T Identity<T>(T x) => x;
+
         class ESelect<T, TResult> : IEnumerable<T>
         {
             readonly IEnumerable<T> _container;
@@ -155,11 +198,7 @@ namespace ITI2016.Dev
         }
 
 
-        public static IEnumerable<TResult> Select<T, TResult>( this IEnumerable<T> container, Func<T, TResult> projection )
-        {
-            return new ESelect<T>( container, projection );
-        }
-
+      
     }
 
 
