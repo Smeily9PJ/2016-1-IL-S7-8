@@ -110,6 +110,47 @@ namespace ITI2016.Dev
             }
         }
 
+<<<<<<< HEAD
+=======
+
+        public static IEnumerable<TResult> Select<T, TResult>(this IEnumerable<T> container, Func<T, TResult> projection)
+        {
+            return new ESelect<T>(container, projection);
+        }
+
+
+        private void SubMethod(System.Collections.Generic.IEnumerable<int> list)
+        {
+            var e = Enumerable.Empty<IPV4>();
+            var ints = Enumerable.Range(0, 2000)
+                    .Select(y => new DateTime(y, 1, 1).DayOfYear);
+            foreach (var dayName in ints)
+            {
+                Console.WriteLine(dayName);
+            }
+            if(list.Any(i => (i&1) != 0)){
+
+            }
+            foreach (var inFirstHundred in list.Take(200))
+            {
+
+            }
+            foreach (var inFirstHundredAfter20 in list.Skip(20).Take(100))
+            {
+
+            }
+            foreach (var ordered in list.OrderBy(i => Math.Cos(i)))
+            {
+
+            }
+        }
+
+        static T Identity<T>(T x) => x;
+
+        {
+            readonly IEnumerable<T> _container;
+            readonly Func<T, TResult> _proj;
+>>>>>>> 5795cbf216c364e0e2a0cd5754dabd99138c4898
 
         public static IEnumerable<TResult> Select<T, TResult>(this IEnumerable<T> container, Func<T, TResult> projection)
         {
@@ -197,6 +238,10 @@ namespace ITI2016.Dev
         }
 
 
+<<<<<<< HEAD
+=======
+            return new ESelect<T, TResult>( container, projection );
+>>>>>>> 5795cbf216c364e0e2a0cd5754dabd99138c4898
       
     }
 

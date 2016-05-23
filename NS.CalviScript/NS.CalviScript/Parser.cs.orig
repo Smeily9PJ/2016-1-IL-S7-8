@@ -1,0 +1,129 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace NS.CalviScript
+{
+    public class Parser
+    {
+        readonly Tokenizer _tokenizer;
+
+<<<<<<< HEAD
+        public Parser(Tokenizer tokenizer)
+=======
+        public Parser( Tokenizer tokenizer )
+>>>>>>> Base/doesnt-compile
+        {
+            _tokenizer = tokenizer;
+            _tokenizer.GetNextToken();
+        }
+
+        public IExpr ParseOperation()
+        {
+<<<<<<< HEAD
+            Operation();
+            ErrorExpr operatorError = null;
+            Token token;
+            if (!_tokenizer.MatchToken(TokenType.End, out token))
+            {
+                operatorError=  new ErrorExpr(string.Format("Expected end of input, but {0} found.",_tokenizer.CurrentToken.Type));
+            }
+            return operatorError;
+=======
+            IExpr operationExpr = Operation();
+            Token token;
+            if( !_tokenizer.MatchToken( TokenType.End, out token ) )
+            {
+                return new ErrorExpr(
+                    string.Format(
+                        "Expected end of input, but {0} found.",
+                        _tokenizer.CurrentToken.Type ) );
+            }
+            return operationExpr;
+>>>>>>> Base/doesnt-compile
+        }
+
+        public IExpr Operation()
+        {
+<<<<<<< HEAD
+            IExpr left = Operand();
+            Token t = _tokenizer.GetNextToken();
+            while (t.Type == TokenType.Plus || t.Type == TokenType.Minus || t.Type == TokenType.Mult || t.Type == TokenType.Div || t.Type == TokenType.Modulo)
+            {
+                _tokenizer.GetNextToken();
+                IExpr right = Operand();
+                t = _tokenizer.CurrentToken;
+            }
+            //return result;
+=======
+            Operand();
+            Token t = _tokenizer.CurrentToken;
+            while( t.Type == TokenType.Plus || t.Type == TokenType.Minus || t.Type == TokenType.Mult || t.Type == TokenType.Div || t.Type == TokenType.Modulo )
+            {
+                _tokenizer.GetNextToken();
+                Operand();
+                t = _tokenizer.CurrentToken;
+            }
+>>>>>>> Base/doesnt-compile
+        }
+
+        public IExpr Operand()
+        {
+            IExpr result;
+<<<<<<< HEAD
+            if (_tokenizer.CurrentToken.Type == TokenType.Number)
+            {
+                Token t = _tokenizer.CurrentToken;
+                result = new NumberExpr(int.Parse(t.Value));
+=======
+            if( _tokenizer.CurrentToken.Type == TokenType.Number )
+            {
+                Token t = _tokenizer.CurrentToken;
+                result = new NumberExpr( int.Parse( t.Value ) );
+>>>>>>> Base/doesnt-compile
+                _tokenizer.GetNextToken();
+            }
+            else
+            {
+                result = PrioritizedOperation();
+            }
+            return result;
+        }
+
+        public IExpr PrioritizedOperation()
+        {
+<<<<<<< HEAD
+            IExpr result;
+            Token token;
+            if (_tokenizer.MatchToken(TokenType.LeftParenthesis, out token))
+            {
+                result = Operation();
+                if (!_tokenizer.MatchToken(TokenType.RightParenthesis, out token))
+                {
+                    result = new ErrorExpr(string.Format("Expected right parenthesis, but {0} found.", _tokenizer.CurrentToken.Type));
+=======
+            Token token;
+            if( _tokenizer.MatchToken( TokenType.LeftParenthesis, out token ) )
+            {
+                Operation();
+                if( !_tokenizer.MatchToken( TokenType.RightParenthesis, out token ) )
+                {
+                    throw new Exception( string.Format( "Unexpected token: {0}", _tokenizer.CurrentToken.Type ) );
+>>>>>>> Base/doesnt-compile
+                }
+            }
+            else
+            {
+<<<<<<< HEAD
+                result = new ErrorExpr(string.Format("Expected left parenthesis, but {0} found.", _tokenizer.CurrentToken.Type));
+            }
+            return result;
+=======
+                throw new Exception( string.Format( "Unexpected token: {0}", _tokenizer.CurrentToken.Type ) );
+            }
+>>>>>>> Base/doesnt-compile
+        }
+    }
+}

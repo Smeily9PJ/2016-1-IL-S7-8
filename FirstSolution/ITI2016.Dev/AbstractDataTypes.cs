@@ -67,8 +67,15 @@ namespace ITI2016.Dev
 
         bool Remove(TKey key);
 
+<<<<<<< HEAD
         /// Gets or setss the value associated to the given key.
         /// When ggetting, the key MUST exist otherwise a <see cref="KeyNotFoundException"/> is thrown
+=======
+        /// <summary>
+        /// Gets or setss the value associated to the given key.
+        /// When ggetting, the key MUST exist otherwise a <see cref="KeyNotFoundException"/> is thrown
+        /// </summary>
+>>>>>>> 5795cbf216c364e0e2a0cd5754dabd99138c4898
         /// <param name="key">The key</param>
         /// <returns>The associated value</returns>
         TValue this[TKey key] { get; set; }

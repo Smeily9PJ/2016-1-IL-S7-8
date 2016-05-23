@@ -100,7 +100,11 @@ namespace ITI2016.Dev
             if( !CanWrite ) throw new NotSupportedException();
             if( buffer == null ) throw new ArgumentNullException( nameof( buffer ) );
             if( offset < 0 || buffer.Length <= offset + count ) throw new ArgumentException();
+<<<<<<< HEAD
             if ( count > 0)
+=======
+            while( count > _writeBuffer.Length )
+>>>>>>> 5795cbf216c364e0e2a0cd5754dabd99138c4898
             {
                 writeBuffer( count);
             }

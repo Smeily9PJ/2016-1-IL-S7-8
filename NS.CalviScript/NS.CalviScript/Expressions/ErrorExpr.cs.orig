@@ -1,0 +1,26 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace NS.CalviScript
+{
+<<<<<<< HEAD
+    class ErrorExpr : IExpr
+    {
+        public ErrorExpr(string msg)
+        {
+            Message = msg;
+=======
+    public class ErrorExpr : IExpr
+    {
+        public ErrorExpr( string message )
+        {
+            Message = message;
+>>>>>>> Base/doesnt-compile
+        }
+
+        public string Message { get; }
+    }
+}

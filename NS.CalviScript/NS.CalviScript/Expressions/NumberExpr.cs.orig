@@ -1,0 +1,22 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace NS.CalviScript
+{
+    public class NumberExpr : IExpr
+    {
+<<<<<<< HEAD
+        public NumberExpr(int value)
+=======
+        public NumberExpr( int value )
+>>>>>>> Base/doesnt-compile
+        {
+            Value = value;
+        }
+
+        public int Value { get; }
+    }
+}

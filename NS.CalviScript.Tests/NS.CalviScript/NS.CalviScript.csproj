@@ -1,10 +1,18 @@
+<<<<<<< HEAD
 <?xml version="1.0" encoding="utf-8"?>
+=======
+﻿<?xml version="1.0" encoding="utf-8"?>
+>>>>>>> 5795cbf216c364e0e2a0cd5754dabd99138c4898
 <Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+<<<<<<< HEAD
     <ProjectGuid>4de56ce7-9ffc-4b0e-8ac0-4bc99bd5d987</ProjectGuid>
+=======
+    <ProjectGuid>{4DE56CE7-9FFC-4B0E-8AC0-4BC99BD5D987}</ProjectGuid>
+>>>>>>> 5795cbf216c364e0e2a0cd5754dabd99138c4898
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>NS.CalviScript</RootNamespace>
@@ -30,6 +38,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+<<<<<<< HEAD
     <Reference Include="System"/>
     
     <Reference Include="System.Core"/>
@@ -47,6 +56,20 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class1.cs" />
+=======
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Token.cs" />
+    <Compile Include="Tokenizer.cs" />
+>>>>>>> 5795cbf216c364e0e2a0cd5754dabd99138c4898
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
@@ -57,5 +80,9 @@
   <Target Name="AfterBuild">
   </Target>
   -->
+<<<<<<< HEAD
 
  </Project>
+=======
+</Project>
+>>>>>>> 5795cbf216c364e0e2a0cd5754dabd99138c4898
