@@ -35,8 +35,40 @@ namespace NS.CalviScript
             return result;
         }
 
+        void Forward() => _pos++;
+
+        bool IsEnd => _pos++;
+
         char Read() => _input[ _pos++ ];
 
-        char Peek() => _input[ _pos ];
+        char Peek(int offset = 0) => _input[ _pos + offset];
+
+        bool IsComment => _pos < _input.Length -1 && Peek() == '/' && Peek(1) == '/';
+
+        void HandleComment()
+        {
+            Debug.Assert(IsComment);
+
+            do
+            {
+                Forward();
+            } while (!isEnd && (Peek() != '\r' || Peek() != '\n'));
+        }
+
+        bool IsWhiteSpace
+        {
+            get
+            {
+
+            }
+        }
+
+        Token HandleNumber()
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.Append(Peek());
+            while (char.IsDigit(Peek())) sb.Append(Read());
+            return new Token(TokenType.Number, sb.ToString());
+        }
     }
 }
