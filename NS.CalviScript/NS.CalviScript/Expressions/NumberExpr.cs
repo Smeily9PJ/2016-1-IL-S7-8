@@ -8,7 +8,7 @@ namespace NS.CalviScript
 {
     public class NumberExpr : IExpr
     {
-        public NumberExpr(int value)
+        public NumberExpr( int value )
         {
             Value = value;
         }

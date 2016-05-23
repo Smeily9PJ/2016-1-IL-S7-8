@@ -33,7 +33,7 @@ namespace NS.CalviScript
             else if( Peek() == '(' ) result = HandleSimpleToken( TokenType.LeftParenthesis );
             else if( Peek() == ')' ) result = HandleSimpleToken( TokenType.RightParenthesis );
             else if( IsNumber ) result = HandleNumber();
-            else result = new Token( TokenType.Error, Peek() );
+            else result = new Token( TokenType.Error, Read() );
 
             CurrentToken = result;
             return result;
@@ -50,6 +50,16 @@ namespace NS.CalviScript
         }
 
         public bool MatchNumber(out Token token)
+        {
+            return MatchToken( TokenType.Number, out token );
+        }
+
+        public bool MatchOperator( out Token token )
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool MatchToken( TokenType type, out Token token )
         {
             throw new NotImplementedException();
         }
@@ -96,18 +106,25 @@ namespace NS.CalviScript
             } while (!IsEnd && IsWhiteSpace);
         }
 
-        bool IsNumber => char.IsDigit(Peek()) && Peek() != '0';
+        bool IsNumber => char.IsDigit( Peek() );
 
         Token HandleNumber()
         {
             Debug.Assert(IsNumber);
+
+            if( Peek() == '0' )
+            {
+                Forward();
+                if( !IsEnd && IsNumber ) return new Token( TokenType.Error, Peek() );
+                return new Token( TokenType.Number, '0' );
+            }
 
             StringBuilder sb = new StringBuilder();
             do
             {
                 sb.Append(Peek());
                 Forward();
-            } while (!IsEnd && char.IsDigit(Peek()));
+            } while( !IsEnd && IsNumber );
 
 =======
         void Forward() => _pos++;

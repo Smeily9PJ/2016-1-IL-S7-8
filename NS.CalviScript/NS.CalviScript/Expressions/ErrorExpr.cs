@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace NS.CalviScript
 {
-    class ErrorExpr : IExpr
+    public class ErrorExpr : IExpr
     {
-        public ErrorExpr(string msg)
+        public ErrorExpr( string message )
         {
-            Message = msg;
+            Message = message;
         }
 
         public string Message { get; }
