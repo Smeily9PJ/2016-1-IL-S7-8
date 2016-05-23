@@ -38,45 +38,45 @@ namespace NS.CalviScript
             return result;
         }
 
-        Token HandleSimpleToken( TokenType type )
-        {
-            char c = Peek();
-            Forward();
+        void Forward() => _pos++;
+
+        bool IsEnd => _pos++;
+
             return new Token( type, c );
         }
 
 
         char Read() => _input[ _pos++ ];
 
-        char Peek() => Peek( 0 );
+        char Peek(int offset = 0) => _input[ _pos + offset];
 
-        void Forward() => _pos++;
-
-        char Peek( int offset ) => _input[ _pos + offset ];
-
-        public bool IsEnd => _pos >= _input.Length;
-
-        bool IsComment => _pos < _input.Length - 1 && Peek() == '/' && Peek( 1 ) == '/';
+        bool IsComment => _pos < _input.Length -1 && Peek() == '/' && Peek(1) == '/';
 
         void HandleComment()
         {
-            Debug.Assert( IsComment );
+            Debug.Assert(IsComment);
 
             do
             {
                 Forward();
-            } while( !IsEnd && Peek() != '\r' && Peek() != '\n' );
+            } while (!isEnd && (Peek() != '\r' || Peek() != '\n'));
         }
 
-        bool IsWhiteSpace => char.IsWhiteSpace( Peek() );
-
-        void HandleWhiteSpaces()
+        bool IsWhiteSpace
         {
-            Debug.Assert( IsWhiteSpace );
-
-            do
+            get
             {
-                Forward();
+
+            }
+        }
+
+        Token HandleNumber()
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.Append(Peek());
+            while (char.IsDigit(Peek())) sb.Append(Read());
+            return new Token(TokenType.Number, sb.ToString());
+        }
             } while( !IsEnd && IsWhiteSpace );
         }
 
