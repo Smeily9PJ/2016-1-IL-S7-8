@@ -4,6 +4,10 @@
     {
         None,
         Plus,
+        Moins,
+        Div,
+        Mod,
+        Mult,
         LeftParenthesis,
         RightParenthesis,
         Number
