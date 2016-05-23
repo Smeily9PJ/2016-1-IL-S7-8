@@ -35,80 +35,101 @@ namespace NS.CalviScript
             else if( IsNumber ) result = HandleNumber();
             else result = new Token( TokenType.Error, Peek() );
 
-            CurrentToken = result;
             return result;
         }
 
-        public Token CurrentToken { get; private set; }
-
-        Token HandleSimpleToken(TokenType type)
+<<<<<<< HEAD
+        Token HandleSimpleToken( TokenType type )
         {
             char c = Peek();
             Forward();
-            return new Token(type, c);
+            return new Token( type, c );
         }
 
-        public bool MatchNumber(out Token token)
-        {
-            throw new NotImplementedException();
-        }
 
-        public bool MatchOperator(out Token token)
-        {
-            throw new NotImplementedException();
-        }
+        char Read() => _input[ _pos++ ];
 
-        public bool MatchToken(TokenType type, out Token token)
-        {
-            throw new NotImplementedException();
-        }
-
-        char Read() => _input[_pos++];
+        char Peek() => Peek( 0 );
 
         void Forward() => _pos++;
 
-        char Peek(int offset = 0) => _input[_pos + offset];
+        char Peek( int offset ) => _input[ _pos + offset ];
 
         public bool IsEnd => _pos >= _input.Length;
 
-        bool IsComment => _pos < _input.Length - 1 && Peek() == '/' && Peek(1) == '/';
+        bool IsComment => _pos < _input.Length - 1 && Peek() == '/' && Peek( 1 ) == '/';
+
+        void HandleComment()
+        {
+            Debug.Assert( IsComment );
+=======
+        void Forward() => _pos++;
+
+        bool IsEnd => _pos++;
+
+        char Read() => _input[ _pos++ ];
+
+        char Peek(int offset = 0) => _input[ _pos + offset];
+
+        bool IsComment => _pos < _input.Length -1 && Peek() == '/' && Peek(1) == '/';
 
         void HandleComment()
         {
             Debug.Assert(IsComment);
+>>>>>>> rtu
 
             do
             {
                 Forward();
-            } while (!IsEnd && Peek() != '\r' && Peek() != '\n');
+<<<<<<< HEAD
+            } while( !IsEnd && Peek() != '\r' && Peek() != '\n' );
         }
 
-        bool IsWhiteSpace => char.IsWhiteSpace(Peek());
+        bool IsWhiteSpace => char.IsWhiteSpace( Peek() );
 
         void HandleWhiteSpaces()
         {
-            Debug.Assert(IsWhiteSpace);
+            Debug.Assert( IsWhiteSpace );
 
             do
             {
                 Forward();
-            } while (!IsEnd && IsWhiteSpace);
+            } while( !IsEnd && IsWhiteSpace );
         }
 
-        bool IsNumber => char.IsDigit(Peek()) && Peek() != '0';
+        bool IsNumber => char.IsDigit( Peek() ) && Peek() != '0';
 
         Token HandleNumber()
         {
-            Debug.Assert(IsNumber);
+            Debug.Assert( IsNumber );
 
             StringBuilder sb = new StringBuilder();
             do
             {
-                sb.Append(Peek());
+                sb.Append( Peek() );
                 Forward();
-            } while (!IsEnd && char.IsDigit(Peek()));
+            } while( !IsEnd && char.IsDigit( Peek() ) );
 
+            return new Token( TokenType.Number, sb.ToString() );
+=======
+            } while (!isEnd && (Peek() != '\r' || Peek() != '\n'));
+        }
+
+        bool IsWhiteSpace
+        {
+            get
+            {
+
+            }
+        }
+
+        Token HandleNumber()
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.Append(Peek());
+            while (char.IsDigit(Peek())) sb.Append(Read());
             return new Token(TokenType.Number, sb.ToString());
+>>>>>>> rtu
         }
     }
 }

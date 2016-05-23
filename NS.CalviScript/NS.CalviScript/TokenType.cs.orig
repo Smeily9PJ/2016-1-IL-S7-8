@@ -4,10 +4,17 @@
     {
         None,
         Plus,
+<<<<<<< HEAD
         Minus,
+        Mult,
         Div,
         Modulo,
+=======
+        Moins,
+        Div,
+        Mod,
         Mult,
+>>>>>>> wdreyy
         LeftParenthesis,
         RightParenthesis,
         Number,

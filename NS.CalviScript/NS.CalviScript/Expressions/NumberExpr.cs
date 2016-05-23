@@ -6,7 +6,13 @@ using System.Threading.Tasks;
 
 namespace NS.CalviScript
 {
-    public class Class1
+    public class NumberExpr : IExpr
     {
+        public NumberExpr(int value)
+        {
+            Value = value;
+        }
+
+        public int Value { get; }
     }
 }
