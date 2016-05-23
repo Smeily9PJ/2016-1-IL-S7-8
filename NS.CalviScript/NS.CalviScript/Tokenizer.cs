@@ -75,8 +75,7 @@ namespace NS.CalviScript
         {
             return MatchToken( TokenType.Number, out token );
         }
-
-            return MatchToken( type, out t );
+        
         public bool MatchToken( TokenType type, out Token token )
         {
             if( type == CurrentToken.Type )
@@ -88,6 +87,12 @@ namespace NS.CalviScript
 
             token = null;
             return false;
+        }
+
+        public bool MatchToken(TokenType type)
+        {
+            Token t;
+            return MatchToken(type, out t);
         }
 
         public bool MatchOperator(out Token token)

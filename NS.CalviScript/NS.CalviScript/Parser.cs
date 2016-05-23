@@ -64,6 +64,7 @@ namespace NS.CalviScript
             {
                 return new NumberExpr( int.Parse( token.Value ) );
             }
+
             if( _tokenizer.MatchToken( TokenType.LeftParenthesis ) )
             {
                 IExpr expr = Expr();
