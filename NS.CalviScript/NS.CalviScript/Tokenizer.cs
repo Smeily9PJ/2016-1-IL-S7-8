@@ -39,6 +39,7 @@ namespace NS.CalviScript
             return result;
         }
 
+<<<<<<< HEAD
         public Token CurrentToken { get; private set; }
 
         Token HandleSimpleToken(TokenType type)
@@ -108,6 +109,41 @@ namespace NS.CalviScript
                 Forward();
             } while (!IsEnd && char.IsDigit(Peek()));
 
+=======
+        void Forward() => _pos++;
+
+        bool IsEnd => _pos++;
+
+        char Read() => _input[ _pos++ ];
+
+        char Peek(int offset = 0) => _input[ _pos + offset];
+
+        bool IsComment => _pos < _input.Length -1 && Peek() == '/' && Peek(1) == '/';
+
+        void HandleComment()
+        {
+            Debug.Assert(IsComment);
+
+            do
+            {
+                Forward();
+            } while (!isEnd && (Peek() != '\r' || Peek() != '\n'));
+        }
+
+        bool IsWhiteSpace
+        {
+            get
+            {
+
+            }
+        }
+
+        Token HandleNumber()
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.Append(Peek());
+            while (char.IsDigit(Peek())) sb.Append(Read());
+>>>>>>> 5795cbf216c364e0e2a0cd5754dabd99138c4898
             return new Token(TokenType.Number, sb.ToString());
         }
     }

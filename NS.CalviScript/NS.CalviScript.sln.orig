@@ -4,12 +4,21 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
 <<<<<<< HEAD
+<<<<<<< HEAD
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NS.CalviScript", "NS.CalviScript\NS.CalviScript.csproj", "{29AE4630-9D29-4C9B-AF7F-230A39C79F48}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NS.CalviScript.Tests", "NS.CalviScript.Tests\NS.CalviScript.Tests.csproj", "{ADBBA8EF-014D-455A-BEAC-8A74DCC80525}"
 =======
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NS.CalviScript", "NS.CalviScript\NS.CalviScript.csproj", "{5E145CE9-05EE-4F4C-BC19-0E55E0AC1C67}"
 >>>>>>> qddf<
+=======
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NS.CalviScript", "NS.CalviScript\NS.CalviScript.csproj", "{5E145CE9-05EE-4F4C-BC19-0E55E0AC1C67}"
+=======
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NS.CalviScript", "NS.CalviScript\NS.CalviScript.csproj", "{29AE4630-9D29-4C9B-AF7F-230A39C79F48}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NS.CalviScript.Tests", "NS.CalviScript.Tests\NS.CalviScript.Tests.csproj", "{ADBBA8EF-014D-455A-BEAC-8A74DCC80525}"
+>>>>>>> Base/master
+>>>>>>> 5795cbf216c364e0e2a0cd5754dabd99138c4898
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -18,6 +27,14 @@ Global
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+		{5E145CE9-05EE-4F4C-BC19-0E55E0AC1C67}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5E145CE9-05EE-4F4C-BC19-0E55E0AC1C67}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5E145CE9-05EE-4F4C-BC19-0E55E0AC1C67}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5E145CE9-05EE-4F4C-BC19-0E55E0AC1C67}.Release|Any CPU.Build.0 = Release|Any CPU
+=======
+>>>>>>> 5795cbf216c364e0e2a0cd5754dabd99138c4898
 		{29AE4630-9D29-4C9B-AF7F-230A39C79F48}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{29AE4630-9D29-4C9B-AF7F-230A39C79F48}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{29AE4630-9D29-4C9B-AF7F-230A39C79F48}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -26,12 +43,16 @@ Global
 		{ADBBA8EF-014D-455A-BEAC-8A74DCC80525}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ADBBA8EF-014D-455A-BEAC-8A74DCC80525}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{ADBBA8EF-014D-455A-BEAC-8A74DCC80525}.Release|Any CPU.Build.0 = Release|Any CPU
+<<<<<<< HEAD
 =======
 		{5E145CE9-05EE-4F4C-BC19-0E55E0AC1C67}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{5E145CE9-05EE-4F4C-BC19-0E55E0AC1C67}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5E145CE9-05EE-4F4C-BC19-0E55E0AC1C67}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5E145CE9-05EE-4F4C-BC19-0E55E0AC1C67}.Release|Any CPU.Build.0 = Release|Any CPU
 >>>>>>> qddf<
+=======
+>>>>>>> Base/master
+>>>>>>> 5795cbf216c364e0e2a0cd5754dabd99138c4898
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
