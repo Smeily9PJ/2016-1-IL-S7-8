@@ -12,6 +12,7 @@ namespace NS.CalviScript
         IExpr left { get; set; }
         IExpr right { get; set; }
 =======
+        string ToLispyString();
 >>>>>>> Base/doesnt-compile
     }
 }

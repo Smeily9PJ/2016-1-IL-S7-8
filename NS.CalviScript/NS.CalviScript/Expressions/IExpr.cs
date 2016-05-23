@@ -8,7 +8,7 @@ namespace NS.CalviScript
 {
     public interface IExpr
     {
-        IExpr left { get; set; }
+        string ToLispyString();
         IExpr right { get; set; }
     }
 }
