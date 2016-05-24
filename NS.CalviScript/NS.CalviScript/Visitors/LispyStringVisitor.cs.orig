@@ -1,5 +1,9 @@
-﻿using System;
+<<<<<<< HEAD
+﻿using NS.CalviScript.Visitors;
 using System;
+=======
+﻿using System;
+>>>>>>> Base/parser-enhancement
 using System.Diagnostics;
 
 namespace NS.CalviScript
@@ -13,7 +17,11 @@ namespace NS.CalviScript
             expr.RightExpr.Accept( this );
             string right = Result;
             Result = string.Format( "[{0} {1} {2}]",
+<<<<<<< HEAD
+                TokenTypeHelper.TokenTypeToString( expr.Type ),
+=======
                 TokenTypeHelpers.TokenTypeToString( expr.Type ),
+>>>>>>> Base/parser-enhancement
                 left,
                 right );
         }
@@ -31,28 +39,44 @@ namespace NS.CalviScript
         public string Result { get; private set; }
     }
 
+<<<<<<< HEAD
+    public class GenericLipsyStringVisitor : IVisitor<string>
+    {
+        public string Visit(ErrorExpr expr)
+        {
+            return string.Format("[Error {0}]" , expr.Message);
+        }
+
+        public string Visit(ConstantExpr expr)
+=======
     public class GenericLispyStringVisitor : IVisitor<string>
     {
         public string Visit( ErrorExpr expr )
         {
             return string.Format( "[Error {0}]", expr.Message );
-
-        public string Visit(ConstantExpr expr)
-        {
-            return expr.Value.ToString();
         }
 
         public string Visit( ConstantExpr expr )
+>>>>>>> Base/parser-enhancement
         {
             return expr.Value.ToString();
         }
 
+<<<<<<< HEAD
+        public string Visit(BinaryExpr expr)
+        {
+            return string.Format("[{0} {1} {2}]",
+                     TokenTypeHelper.TokenTypeToString(expr.type),
+                     expr.LeftExpr.Accept(this),
+                     expr.RightExpr.Accept(this));
+=======
         public string Visit( BinaryExpr expr )
         {
             return string.Format( "[{0} {1} {2}]",
                 TokenTypeHelpers.TokenTypeToString( expr.Type ),
                 expr.LeftExpr.Accept( this ),
                 expr.RightExpr.Accept( this ) );
+>>>>>>> Base/parser-enhancement
         }
     }
 }

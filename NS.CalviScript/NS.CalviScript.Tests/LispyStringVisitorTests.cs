@@ -8,14 +8,23 @@ namespace NS.CalviScript.Tests
         [Test]
         public void can_stringify()
         {
-            Tokenizer tokenizer = new Tokenizer( "(8 + 10) * (11 % 15)" );
-            Parser parser = new Parser( tokenizer );
-            IExpr expr = parser.ParseExpression();
+            IExpr expr = Parser.Parse( "(8 + 10) * (11 % 15)" );
             LispyStringVisitor sut = new LispyStringVisitor();
 
             sut.Visit( expr );
 
             Assert.That( sut.Result, Is.EqualTo( "[* [+ 8 10] [% 11 15]]" ) );
+        }
+
+        [Test]
+        public void generic_impl_can_stringify()
+        {
+            IExpr expr = Parser.Parse( "5 + 10 % 2" );
+            GenericLispyStringVisitor sut = new GenericLispyStringVisitor();
+
+            string result = sut.Visit( expr );
+
+            Assert.That( result, Is.EqualTo( "[+ 5 [% 10 2]]" ) );
         }
     }
 }
