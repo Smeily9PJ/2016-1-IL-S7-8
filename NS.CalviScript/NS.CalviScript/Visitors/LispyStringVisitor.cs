@@ -36,10 +36,6 @@ namespace NS.CalviScript
         public string Visit( ErrorExpr expr )
         {
             return string.Format( "[Error {0}]", expr.Message );
-
-        public string Visit(ConstantExpr expr)
-        {
-            return expr.Value.ToString();
         }
 
         public string Visit( ConstantExpr expr )
