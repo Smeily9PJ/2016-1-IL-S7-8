@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace NS.CalviScript
+﻿namespace NS.CalviScript
 {
     public class Parser
     {
@@ -29,6 +27,11 @@ namespace NS.CalviScript
 
         IExpr Expr()
         {
+            throw new System.NotImplementedException();
+        }
+
+        IExpr MathExpr()
+        {
             IExpr leftTerm = Term();
             Token token;
             while( _tokenizer.MatchTermOp( out token ) )
@@ -38,13 +41,6 @@ namespace NS.CalviScript
             }
 
             return leftTerm;
-        }
-
-        public static IExpr Parse( string input )
-        {
-            Tokenizer tokenizer = new Tokenizer( input );
-            Parser parser = new Parser( tokenizer );
-            return parser.ParseExpression();
         }
 
         IExpr Term()
@@ -61,6 +57,15 @@ namespace NS.CalviScript
         }
 
         IExpr Factor()
+        {
+            bool isMinusExpr = _tokenizer.MatchToken( TokenType.Minus );
+            IExpr expr = PositiveFactor();
+            if( isMinusExpr ) expr = new UnaryExpr( TokenType.Minus, expr );
+
+            return expr;
+        }
+
+        IExpr PositiveFactor()
         {
             Token token;
             if( _tokenizer.MatchNumber( out token ) )
@@ -86,6 +91,13 @@ namespace NS.CalviScript
                 string.Format(
                     "Unexpected token: {0}.",
                     token.Type ) );
+        }
+
+        public static IExpr Parse( string input )
+        {
+            Tokenizer tokenizer = new Tokenizer( input );
+            Parser parser = new Parser( tokenizer );
+            return parser.ParseExpression();
         }
     }
 }

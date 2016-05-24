@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace NS.CalviScript
 {
@@ -27,6 +23,13 @@ namespace NS.CalviScript
             Result = TokenTypeHelpers.Compute( left, right, expr.Type );
         }
 
+        public void Visit( UnaryExpr expr )
+        {
+            expr.Expr.Accept( this );
+            int value = Result;
+            Result = TokenTypeHelpers.Compute( value, expr.Type );
+        }
+
         public int Result { get; private set; }
     }
 
@@ -35,6 +38,11 @@ namespace NS.CalviScript
         public int Visit( ErrorExpr expr )
         {
             throw new InvalidOperationException( expr.Message );
+        }
+
+        public int Visit( UnaryExpr expr )
+        {
+            return TokenTypeHelpers.Compute( expr.Expr.Accept( this ), expr.Type );
         }
 
         public int Visit( ConstantExpr expr )

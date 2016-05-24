@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Diagnostics;
 
 namespace NS.CalviScript
 {
@@ -27,6 +26,14 @@ namespace NS.CalviScript
             Result = string.Format( "[Error {0}]", expr.Message );
         }
 
+        public void Visit( UnaryExpr expr )
+        {
+            expr.Expr.Accept( this );
+            Result = string.Format( "{0}{1}",
+                TokenTypeHelpers.TokenTypeToString( expr.Type ),
+                Result );
+        }
+
         public string Result { get; private set; }
     }
 
@@ -35,6 +42,13 @@ namespace NS.CalviScript
         public string Visit( ErrorExpr expr )
         {
             return string.Format( "[Error {0}]", expr.Message ); ;
+        }
+
+        public string Visit( UnaryExpr expr )
+        {
+            return string.Format( "{0}{1}",
+                TokenTypeHelpers.TokenTypeToString( expr.Type ),
+                expr.Expr.Accept( this ) );
         }
 
         public string Visit( ConstantExpr expr )

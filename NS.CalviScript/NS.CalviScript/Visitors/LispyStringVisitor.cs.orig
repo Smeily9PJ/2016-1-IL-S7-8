@@ -1,10 +1,9 @@
-<<<<<<< HEAD
-﻿using NS.CalviScript.Visitors;
-using System;
-=======
 ﻿using System;
->>>>>>> Base/parser-enhancement
+<<<<<<< HEAD
+using System;
 using System.Diagnostics;
+=======
+>>>>>>> Base/parser-enhancement
 
 namespace NS.CalviScript
 {
@@ -17,11 +16,7 @@ namespace NS.CalviScript
             expr.RightExpr.Accept( this );
             string right = Result;
             Result = string.Format( "[{0} {1} {2}]",
-<<<<<<< HEAD
-                TokenTypeHelper.TokenTypeToString( expr.Type ),
-=======
                 TokenTypeHelpers.TokenTypeToString( expr.Type ),
->>>>>>> Base/parser-enhancement
                 left,
                 right );
         }
@@ -36,19 +31,18 @@ namespace NS.CalviScript
             Result = string.Format( "[Error {0}]", expr.Message );
         }
 
+        public void Visit( UnaryExpr expr )
+        {
+            expr.Expr.Accept( this );
+            string value = Result;
+            Result = string.Format( "[{0} {1}]",
+                TokenTypeHelpers.TokenTypeToString( expr.Type ),
+                value );
+        }
+
         public string Result { get; private set; }
     }
 
-<<<<<<< HEAD
-    public class GenericLipsyStringVisitor : IVisitor<string>
-    {
-        public string Visit(ErrorExpr expr)
-        {
-            return string.Format("[Error {0}]" , expr.Message);
-        }
-
-        public string Visit(ConstantExpr expr)
-=======
     public class GenericLispyStringVisitor : IVisitor<string>
     {
         public string Visit( ErrorExpr expr )
@@ -56,27 +50,24 @@ namespace NS.CalviScript
             return string.Format( "[Error {0}]", expr.Message );
         }
 
+        public string Visit( UnaryExpr expr )
+        {
+            return string.Format( "[{0} {1}]",
+                TokenTypeHelpers.TokenTypeToString( expr.Type ),
+                expr.Expr.Accept( this ) );
+        }
+
         public string Visit( ConstantExpr expr )
->>>>>>> Base/parser-enhancement
         {
             return expr.Value.ToString();
         }
 
-<<<<<<< HEAD
-        public string Visit(BinaryExpr expr)
-        {
-            return string.Format("[{0} {1} {2}]",
-                     TokenTypeHelper.TokenTypeToString(expr.type),
-                     expr.LeftExpr.Accept(this),
-                     expr.RightExpr.Accept(this));
-=======
         public string Visit( BinaryExpr expr )
         {
             return string.Format( "[{0} {1} {2}]",
                 TokenTypeHelpers.TokenTypeToString( expr.Type ),
                 expr.LeftExpr.Accept( this ),
                 expr.RightExpr.Accept( this ) );
->>>>>>> Base/parser-enhancement
         }
     }
 }
