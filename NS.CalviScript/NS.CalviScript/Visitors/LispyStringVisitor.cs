@@ -1,4 +1,6 @@
-﻿using System.Diagnostics;
+﻿using NS.CalviScript.Visitors;
+using System;
+using System.Diagnostics;
 
 namespace NS.CalviScript
 {
@@ -11,7 +13,7 @@ namespace NS.CalviScript
             expr.RightExpr.Accept( this );
             string right = Result;
             Result = string.Format( "[{0} {1} {2}]",
-                TokenTypeToString( expr.Type ),
+                TokenTypeHelper.TokenTypeToString( expr.Type ),
                 left,
                 right );
         }
@@ -27,18 +29,26 @@ namespace NS.CalviScript
         }
 
         public string Result { get; private set; }
+    }
 
-        string TokenTypeToString( TokenType t )
+    public class GenericLipsyStringVisitor : IVisitor<string>
+    {
+        public string Visit(ErrorExpr expr)
         {
-            if( t == TokenType.Plus ) return "+";
-            else if( t == TokenType.Minus ) return "-";
-            else if( t == TokenType.Mult ) return "*";
-            else if( t == TokenType.Div ) return "/";
-            else
-            {
-                Debug.Assert( t == TokenType.Modulo );
-                return "%";
-            }
+            return string.Format("[Error {0}]" , expr.Message);
+        }
+
+        public string Visit(ConstantExpr expr)
+        {
+            return expr.Value.ToString();
+        }
+
+        public string Visit(BinaryExpr expr)
+        {
+            return string.Format("[{0} {1} {2}]",
+                     TokenTypeHelper.TokenTypeToString(expr.type),
+                     expr.LeftExpr.Accept(this),
+                     expr.RightExpr.Accept(this));
         }
     }
 }
