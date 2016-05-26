@@ -36,6 +36,8 @@ namespace NS.CalviScript
             else if( Peek() == ':' ) result = HandleSimpleToken( TokenType.Colon );
             else if( Peek() == '=' ) result = HandleSimpleToken( TokenType.Equal );
             else if( Peek() == ';' ) result = HandleSimpleToken( TokenType.SemiColon );
+            else if( Peek() == '{' ) result = HandleSimpleToken(TokenType.LeftCurlyBraces);
+            else if( Peek() == '}' ) result = HandleSimpleToken(TokenType.RightCurlyBraces);
             else if( IsNumber ) result = HandleNumber();
             else if( IsIdentifier ) result = HandleIdentifier();
             else result = new Token( TokenType.Error, Read() );
