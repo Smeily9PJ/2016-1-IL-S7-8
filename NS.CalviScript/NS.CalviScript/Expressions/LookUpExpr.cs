@@ -8,12 +8,15 @@ namespace NS.CalviScript
 {
     public class LookUpExpr : IExpr
     {
-        public LookUpExpr( string identifier )
+        public LookUpExpr( string identifier , VarDeclExpr varDecl)
         {
             Identifier = identifier;
+            VarDecl = varDecl;
         }
 
         public string Identifier { get; }
+
+        public VarDeclExpr VarDecl { get; }
 
         public T Accept<T>( IVisitor<T> visitor )
         {

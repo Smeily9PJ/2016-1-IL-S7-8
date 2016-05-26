@@ -6,15 +6,17 @@ using System.Threading.Tasks;
 
 namespace NS.CalviScript
 {
-    public class VarDeclExpr : IExpr
+    public class AssignExpr : IExpr
     {
-        public VarDeclExpr( string identifier )
+        public AssignExpr(IIdentifierExpr left, string identifier)
         {
+            left = left;
             Identifier = identifier;
         }
 
+        public IIdentifierExpr Left { get; }
         public string Identifier { get; }
 
-        public T Accept<T>( IVisitor<T> visitor ) => visitor.Visit( this );
+        public T Accept<T>(IVisitor<T> visitor) => visitor.Visit(this);
     }
 }
