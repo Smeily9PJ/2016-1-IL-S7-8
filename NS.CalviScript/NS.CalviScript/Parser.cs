@@ -44,16 +44,6 @@ namespace NS.CalviScript
                     statements.Add(s);
                 }
             }
-            List<IExpr> statements = new List<IExpr>();
-            using( _synScope.OpenScope() )
-            {
-                while( !_tokenizer.MatchToken( TokenType.CloseCurly ) )
-                {
-                    var s = Block( false ) ?? Statement();
-                    if( s is ErrorExpr ) return s;
-                    statements.Add( s );
-                }
-            }
             return new BlockExpr( statements );
         }
 
