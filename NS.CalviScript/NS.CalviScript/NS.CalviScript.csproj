@@ -42,12 +42,12 @@
   <ItemGroup>
     <Compile Include="Class1.cs" />
     <Compile Include="Expressions\BinaryExpr.cs" />
+    <Compile Include="Expressions\BlockExpr.cs" />
     <Compile Include="Expressions\ErrorExpr.cs" />
     <Compile Include="Expressions\IIdentifierExpr.cs" />
     <Compile Include="Expressions\IExpr.cs" />
     <Compile Include="Expressions\ConstantExpr.cs" />
     <Compile Include="Expressions\LookUpExpr.cs" />
-    <Compile Include="Expressions\BlockExpr.cs" />
     <Compile Include="Expressions\TernaryExpr.cs" />
     <Compile Include="Expressions\UnaryExpr.cs" />
     <Compile Include="Expressions\AssignExpr.cs" />

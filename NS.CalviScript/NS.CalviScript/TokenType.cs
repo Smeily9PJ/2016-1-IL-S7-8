@@ -10,6 +10,8 @@
         Mult,
         LeftParenthesis,
         RightParenthesis,
+        LeftCurlyBraces,
+        RightCurlyBraces,
         Number,
         Error,
         End,
