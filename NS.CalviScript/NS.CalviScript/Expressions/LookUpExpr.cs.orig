@@ -8,7 +8,11 @@ namespace NS.CalviScript
 {
     public class LookUpExpr : IExpr, IIdentifierExpr
     {
+<<<<<<< HEAD
+        public LookUpExpr( string identifier , VarDeclExpr varDecl)
+=======
         public LookUpExpr( string identifier, VarDeclExpr varDecl )
+>>>>>>> Base/master
         {
             Identifier = identifier;
             VarDecl = varDecl;

@@ -40,19 +40,32 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-<<<<<<< HEAD
     <Compile Include="Class1.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-=======
     <Compile Include="Expressions\BinaryExpr.cs" />
     <Compile Include="Expressions\ErrorExpr.cs" />
+<<<<<<< HEAD
+    <Compile Include="Properties\AssemblyInfo.cs" />
+=======
+    <Compile Include="Expressions\IIdentifierExpr.cs" />
+>>>>>>> Base/master
     <Compile Include="Expressions\IExpr.cs" />
-    <Compile Include="Expressions\NumberExpr.cs" />
+    <Compile Include="Expressions\ConstantExpr.cs" />
+    <Compile Include="Expressions\LookUpExpr.cs" />
+    <Compile Include="Expressions\ProgramExpr.cs" />
+    <Compile Include="Expressions\TernaryExpr.cs" />
+    <Compile Include="Expressions\UnaryExpr.cs" />
+    <Compile Include="Expressions\AssignExpr.cs" />
+    <Compile Include="Expressions\VarDeclExpr.cs" />
+    <Compile Include="IVisitor.cs" />
     <Compile Include="Parser.cs" />
->>>>>>> Base/doesnt-compile
+    <Compile Include="SyntaxicScope.cs" />
     <Compile Include="Token.cs" />
     <Compile Include="Tokenizer.cs" />
     <Compile Include="TokenType.cs" />
+    <Compile Include="Visitors\EvalVisitor.cs" />
+    <Compile Include="Visitors\InfixStringVisitor.cs" />
+    <Compile Include="Visitors\LispyStringVisitor.cs" />
+    <Compile Include="Visitors\TokenTypeHelpers.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

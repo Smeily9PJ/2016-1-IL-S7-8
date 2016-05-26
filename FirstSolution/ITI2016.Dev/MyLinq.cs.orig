@@ -104,6 +104,15 @@ namespace ITI2016.Dev
 
         class ESelect<T, TResult> : IEnumerable<TResult>
         {
+<<<<<<< HEAD
+            foreach( var item in container )
+            {
+                if( predicate( item ) ) yield return item;
+            }
+        }
+
+
+        class ESelect<T, TResult> : IEnumerable<TResult>
 
         public static IEnumerable<TResult> Select<T, TResult>(this IEnumerable<T> container, Func<T, TResult> projection)
         {
@@ -139,6 +148,9 @@ namespace ITI2016.Dev
 
         static T Identity<T>(T x) => x;
 
+        {
+=======
+>>>>>>> Base/master
             readonly IEnumerable<T> _container;
             readonly Func<T, TResult> _proj;
 >>>>>>> 5795cbf216c364e0e2a0cd5754dabd99138c4898

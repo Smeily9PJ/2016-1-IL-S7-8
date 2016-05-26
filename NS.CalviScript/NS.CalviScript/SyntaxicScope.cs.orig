@@ -10,11 +10,24 @@ namespace NS.CalviScript
     {
         Dictionary<string, VarDeclExpr> _scope;
 
+<<<<<<< HEAD
+        public IExpr Register(string identifier)
+=======
         public SyntaxicScope()
+>>>>>>> Base/master
         {
             _scope = new Dictionary<string, VarDeclExpr>();
         }
 
+<<<<<<< HEAD
+        public IExpr Declare(string identifier)
+        {
+            VarDeclExpr exsiting;
+            if(_scope.TryGetValue(identifier, out exsiting))
+            {
+                return new ErrorExpr("Duplicate identifier declaration : " + identifier);
+            }
+=======
         public IExpr Declare( string identifier )
         {
             VarDeclExpr existing;
@@ -32,6 +45,7 @@ namespace NS.CalviScript
             VarDeclExpr existing;
             _scope.TryGetValue( identifier, out existing );
             return new LookUpExpr( identifier, existing );        
+>>>>>>> Base/master
         }
     }
 }
