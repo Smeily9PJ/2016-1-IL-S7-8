@@ -20,6 +20,8 @@
         Equal,
         SemiColon,
         Var,
-        Identifier
+        Identifier,
+        OpenCurly,
+        CloseCurly
     }
 }
