@@ -42,6 +42,7 @@
   <ItemGroup>
     <Compile Include="Class1.cs" />
     <Compile Include="Expressions\BinaryExpr.cs" />
+    <Compile Include="Expressions\UndefinedExpr.cs" />
     <Compile Include="Expressions\BlockExpr.cs" />
     <Compile Include="Expressions\ErrorExpr.cs" />
     <Compile Include="Expressions\IIdentifierExpr.cs" />
