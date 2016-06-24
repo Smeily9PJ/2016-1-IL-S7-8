@@ -36,8 +36,14 @@ namespace NS.CalviScript
             else if( Peek() == ':' ) result = HandleSimpleToken( TokenType.Colon );
             else if( Peek() == '=' ) result = HandleSimpleToken( TokenType.Equal );
             else if( Peek() == ';' ) result = HandleSimpleToken( TokenType.SemiColon );
+<<<<<<< HEAD
             else if( Peek() == '{' ) result = HandleSimpleToken(TokenType.OpenCurly);
             else if( Peek() == '}' ) result = HandleSimpleToken(TokenType.CloseCurly);
+=======
+            else if( Peek() == '{' ) result = HandleSimpleToken( TokenType.OpenCurly );
+            else if( Peek() == '}' ) result = HandleSimpleToken( TokenType.CloseCurly );
+            else if( Peek() == ',' ) result = HandleSimpleToken( TokenType.Comma );
+>>>>>>> Base/master
             else if( IsNumber ) result = HandleNumber();
             else if( IsIdentifier ) result = HandleIdentifier();
             else result = new Token( TokenType.Error, Read() );
@@ -154,13 +160,8 @@ namespace NS.CalviScript
             if (Peek() == '0')
             {
                 Forward();
-<<<<<<< HEAD
-                if (!IsEnd && IsNumber) return new Token(TokenType.Error, Peek());
-                return new Token(TokenType.Number, '0');
-=======
                 if( !IsEnd && (IsNumber || IsIdentifier) ) return new Token( TokenType.Error, "0" + Peek() );
-                return new Token( TokenType.Number, '0' );
->>>>>>> Base/master
+                return new Token(TokenType.Number, '0');
             }
 
             StringBuilder sb = new StringBuilder();
@@ -170,17 +171,13 @@ namespace NS.CalviScript
                 Forward();
             } while (!IsEnd && IsNumber);
 
-<<<<<<< HEAD
-            return new Token(TokenType.Number, sb.ToString());
-=======
             if (!IsEnd && IsIdentifier)
             {
                 sb.Append(Peek());
                 return new Token(TokenType.Error, sb.ToString());
             }
 
-            return new Token( TokenType.Number, sb.ToString() );
->>>>>>> Base/master
+            return new Token(TokenType.Number, sb.ToString());
         }
 
         bool IsIdentifier => char.IsLetter( Peek() ) || Peek() == '_';
@@ -199,6 +196,7 @@ namespace NS.CalviScript
             string identifier = sb.ToString();
             if( identifier == "var" ) return new Token( TokenType.Var, identifier );
             if( identifier == "while" ) return new Token( TokenType.While, identifier );
+            if( identifier == "function" ) return new Token( TokenType.Function, identifier );
             return new Token( TokenType.Identifier, identifier );
         }
     }
