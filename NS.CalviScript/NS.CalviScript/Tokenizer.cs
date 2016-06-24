@@ -141,6 +141,12 @@ namespace NS.CalviScript
 
         bool IsNumber => char.IsDigit( Peek() );
 
+        /// <summary>
+        /// Create a new <see cref="Token"/> and moves forward.
+        /// The number should be a zero only, or start with a digit from 1 to 9 followed by any number of digit from 0 to 9.
+        /// A number must not be immediately followed by an identifer.
+        /// </summary>
+        /// <returns>A new <see cref="Token"/>.</returns>
         Token HandleNumber()
         {
             Debug.Assert(IsNumber);
@@ -148,7 +154,7 @@ namespace NS.CalviScript
             if (Peek() == '0')
             {
                 Forward();
-                if (!IsEnd && IsNumber) return new Token(TokenType.Error, Peek());
+                if( !IsEnd && (IsNumber || IsIdentifier) ) return new Token( TokenType.Error, "0" + Peek() );
                 return new Token(TokenType.Number, '0');
             }
 
@@ -158,6 +164,12 @@ namespace NS.CalviScript
                 sb.Append(Peek());
                 Forward();
             } while (!IsEnd && IsNumber);
+
+            if (!IsEnd && IsIdentifier)
+            {
+                sb.Append(Peek());
+                return new Token(TokenType.Error, sb.ToString());
+            }
 
             return new Token(TokenType.Number, sb.ToString());
         }
@@ -177,6 +189,7 @@ namespace NS.CalviScript
 
             string identifier = sb.ToString();
             if( identifier == "var" ) return new Token( TokenType.Var, identifier );
+            if( identifier == "while" ) return new Token( TokenType.While, identifier );
             return new Token( TokenType.Identifier, identifier );
         }
     }

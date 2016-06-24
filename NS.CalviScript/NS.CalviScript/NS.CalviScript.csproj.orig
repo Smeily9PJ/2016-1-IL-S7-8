@@ -40,18 +40,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
-    <Compile Include="Expressions\BinaryExpr.cs" />
-    <Compile Include="Expressions\ErrorExpr.cs" />
 <<<<<<< HEAD
-    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Class1.cs" />
 =======
-    <Compile Include="Expressions\IIdentifierExpr.cs" />
+    <Compile Include="Expressions\WhileExpr.cs" />
 >>>>>>> Base/master
+    <Compile Include="Expressions\BinaryExpr.cs" />
+    <Compile Include="Expressions\UndefinedExpr.cs" />
+    <Compile Include="Expressions\BlockExpr.cs" />
+    <Compile Include="Expressions\ErrorExpr.cs" />
+    <Compile Include="Expressions\IIdentifierExpr.cs" />
     <Compile Include="Expressions\IExpr.cs" />
     <Compile Include="Expressions\ConstantExpr.cs" />
     <Compile Include="Expressions\LookUpExpr.cs" />
-    <Compile Include="Expressions\ProgramExpr.cs" />
     <Compile Include="Expressions\TernaryExpr.cs" />
     <Compile Include="Expressions\UnaryExpr.cs" />
     <Compile Include="Expressions\AssignExpr.cs" />
@@ -62,9 +63,14 @@
     <Compile Include="Token.cs" />
     <Compile Include="Tokenizer.cs" />
     <Compile Include="TokenType.cs" />
+    <Compile Include="ValueObject\ErrorValue.cs" />
+    <Compile Include="ValueObject\UndefinedValue.cs" />
+    <Compile Include="ValueObject\ValueBase.cs" />
+    <Compile Include="ValueObject\IntegerValue.cs" />
     <Compile Include="Visitors\EvalVisitor.cs" />
     <Compile Include="Visitors\InfixStringVisitor.cs" />
     <Compile Include="Visitors\LispyStringVisitor.cs" />
+    <Compile Include="Visitors\StandardVisitor.cs" />
     <Compile Include="Visitors\TokenTypeHelpers.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -36,13 +36,8 @@ namespace NS.CalviScript
             else if( Peek() == ':' ) result = HandleSimpleToken( TokenType.Colon );
             else if( Peek() == '=' ) result = HandleSimpleToken( TokenType.Equal );
             else if( Peek() == ';' ) result = HandleSimpleToken( TokenType.SemiColon );
-<<<<<<< HEAD
-            else if( Peek() == '{' ) result = HandleSimpleToken(TokenType.LeftCurlyBraces);
-            else if( Peek() == '}' ) result = HandleSimpleToken(TokenType.RightCurlyBraces);
-=======
-            else if( Peek() == '{' ) result = HandleSimpleToken( TokenType.OpenCurly );
-            else if( Peek() == '}' ) result = HandleSimpleToken( TokenType.CloseCurly );
->>>>>>> Base/master
+            else if( Peek() == '{' ) result = HandleSimpleToken(TokenType.OpenCurly);
+            else if( Peek() == '}' ) result = HandleSimpleToken(TokenType.CloseCurly);
             else if( IsNumber ) result = HandleNumber();
             else if( IsIdentifier ) result = HandleIdentifier();
             else result = new Token( TokenType.Error, Read() );
@@ -146,6 +141,12 @@ namespace NS.CalviScript
 
         bool IsNumber => char.IsDigit( Peek() );
 
+        /// <summary>
+        /// Create a new <see cref="Token"/> and moves forward.
+        /// The number should be a zero only, or start with a digit from 1 to 9 followed by any number of digit from 0 to 9.
+        /// A number must not be immediately followed by an identifer.
+        /// </summary>
+        /// <returns>A new <see cref="Token"/>.</returns>
         Token HandleNumber()
         {
             Debug.Assert(IsNumber);
@@ -153,8 +154,13 @@ namespace NS.CalviScript
             if (Peek() == '0')
             {
                 Forward();
+<<<<<<< HEAD
                 if (!IsEnd && IsNumber) return new Token(TokenType.Error, Peek());
                 return new Token(TokenType.Number, '0');
+=======
+                if( !IsEnd && (IsNumber || IsIdentifier) ) return new Token( TokenType.Error, "0" + Peek() );
+                return new Token( TokenType.Number, '0' );
+>>>>>>> Base/master
             }
 
             StringBuilder sb = new StringBuilder();
@@ -164,7 +170,17 @@ namespace NS.CalviScript
                 Forward();
             } while (!IsEnd && IsNumber);
 
+<<<<<<< HEAD
             return new Token(TokenType.Number, sb.ToString());
+=======
+            if (!IsEnd && IsIdentifier)
+            {
+                sb.Append(Peek());
+                return new Token(TokenType.Error, sb.ToString());
+            }
+
+            return new Token( TokenType.Number, sb.ToString() );
+>>>>>>> Base/master
         }
 
         bool IsIdentifier => char.IsLetter( Peek() ) || Peek() == '_';
@@ -182,6 +198,7 @@ namespace NS.CalviScript
 
             string identifier = sb.ToString();
             if( identifier == "var" ) return new Token( TokenType.Var, identifier );
+            if( identifier == "while" ) return new Token( TokenType.While, identifier );
             return new Token( TokenType.Identifier, identifier );
         }
     }
