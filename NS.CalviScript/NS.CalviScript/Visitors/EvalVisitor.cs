@@ -64,7 +64,7 @@ namespace NS.CalviScript
             {
                 parameterValues.Add( UndefinedValue.Default );
             }
-            using( _variables.OpenScope() )
+            using ( _variables.OpenScope() )
             {
                 for( int i = 0; i < f.FunDecl.Parameters.Count; ++i )
                 {

@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 using System.Diagnostics;
 using System.Text;
 
@@ -9,7 +10,7 @@ namespace NS.CalviScript
         readonly string _input;
         int _pos;
 
-        public Tokenizer( string input )
+        public Tokenizer(string input)
         {
             _input = input;
         }
@@ -17,51 +18,51 @@ namespace NS.CalviScript
         public Token GetNextToken()
         {
             Token result = null;
-            while (!IsEnd() &&( IsWhiteSpace || IsComment || IsMultiLineComment ))
+            while (!IsEnd() && (IsWhiteSpace || IsComment || IsMultiLineComment))
             {
-                if( IsWhiteSpace ) HandleWhiteSpaces();
-                if( IsComment ) HandleComment();
+                if (IsWhiteSpace) HandleWhiteSpaces();
+                if (IsComment) HandleComment();
                 if (IsMultiLineComment) result = HandleMultiLineComment();
                 if (result != null) return CurrentToken = result;
             }
 
             if (IsEnd()) return CurrentToken = new Token(TokenType.End);
 
-            if( Peek() == '+' ) result = HandleSimpleToken( TokenType.Plus );
-            else if( Peek() == '-' ) result = HandleSimpleToken( TokenType.Minus );
-            else if( Peek() == '*' ) result = HandleSimpleToken( TokenType.Mult );
-            else if( Peek() == '/' ) result = HandleSimpleToken( TokenType.Div );
-            else if( Peek() == '%' ) result = HandleSimpleToken( TokenType.Modulo );
-            else if( Peek() == '(' ) result = HandleSimpleToken( TokenType.LeftParenthesis );
-            else if( Peek() == ')' ) result = HandleSimpleToken( TokenType.RightParenthesis );
-            else if( Peek() == '?' ) result = HandleSimpleToken( TokenType.QuestionMark );
-            else if( Peek() == ':' ) result = HandleSimpleToken( TokenType.Colon );
-            else if( Peek() == '=' ) result = HandleSimpleToken( TokenType.Equal );
-            else if( Peek() == ';' ) result = HandleSimpleToken( TokenType.SemiColon );
-            else if( Peek() == '{' ) result = HandleSimpleToken(TokenType.OpenCurly);
-            else if( Peek() == '}' ) result = HandleSimpleToken(TokenType.CloseCurly);
-            else if( Peek() == ',' ) result = HandleSimpleToken( TokenType.Comma );
-            else if( IsNumber ) result = HandleNumber();
-            else if( IsIdentifier ) result = HandleIdentifier();
-            else result = new Token( TokenType.Error, Read() );
+            if (Peek() == '+') result = HandleSimpleToken(TokenType.Plus);
+            else if (Peek() == '-') result = HandleSimpleToken(TokenType.Minus);
+            else if (Peek() == '*') result = HandleSimpleToken(TokenType.Mult);
+            else if (Peek() == '/') result = HandleSimpleToken(TokenType.Div);
+            else if (Peek() == '%') result = HandleSimpleToken(TokenType.Modulo);
+            else if (Peek() == '(') result = HandleSimpleToken(TokenType.LeftParenthesis);
+            else if (Peek() == ')') result = HandleSimpleToken(TokenType.RightParenthesis);
+            else if (Peek() == '?') result = HandleSimpleToken(TokenType.QuestionMark);
+            else if (Peek() == ':') result = HandleSimpleToken(TokenType.Colon);
+            else if (Peek() == '=') result = HandleSimpleToken(TokenType.Equal);
+            else if (Peek() == ';') result = HandleSimpleToken(TokenType.SemiColon);
+            else if (Peek() == '{') result = HandleSimpleToken(TokenType.OpenCurly);
+            else if (Peek() == '}') result = HandleSimpleToken(TokenType.CloseCurly);
+            else if (Peek() == ',') result = HandleSimpleToken(TokenType.Comma);
+            else if (IsNumber) result = HandleNumber();
+            else if (IsIdentifier) result = HandleIdentifier();
+            else result = new Token(TokenType.Error, Read());
 
             CurrentToken = result;
             return result;
         }
 
-        public bool MatchTermOp( out Token token )
+        public bool MatchTermOp(out Token token)
         {
-            return MatchOp( t => t == TokenType.Plus || t == TokenType.Minus, out token );
+            return MatchOp(t => t == TokenType.Plus || t == TokenType.Minus, out token);
         }
 
-        public bool MatchFactorOp( out Token token )
+        public bool MatchFactorOp(out Token token)
         {
-            return MatchOp( t => t == TokenType.Mult || t == TokenType.Div || t == TokenType.Modulo, out token );
+            return MatchOp(t => t == TokenType.Mult || t == TokenType.Div || t == TokenType.Modulo, out token);
         }
 
-        bool MatchOp( Func<TokenType, bool> predicate, out Token token )
+        bool MatchOp(Func<TokenType, bool> predicate, out Token token)
         {
-            if( predicate( CurrentToken.Type ) )
+            if (predicate(CurrentToken.Type))
             {
                 token = CurrentToken;
                 GetNextToken();
@@ -83,12 +84,18 @@ namespace NS.CalviScript
 
         public bool MatchNumber(out Token token)
         {
-            return MatchToken( TokenType.Number, out token );
+            return MatchToken(TokenType.Number, out token);
         }
-        
-        public bool MatchToken( TokenType type, out Token token )
+
+        public bool MatchToken(TokenType type)
         {
-            if( type == CurrentToken.Type )
+            Token t;
+            return MatchToken(type, out t);
+        }
+
+        public bool MatchToken(TokenType type, out Token token)
+        {
+            if (type == CurrentToken.Type)
             {
                 token = CurrentToken;
                 GetNextToken();
@@ -99,18 +106,9 @@ namespace NS.CalviScript
             return false;
         }
 
-        public bool MatchToken(TokenType type)
-        {
-            Token t;
-            return MatchToken(type, out t);
-        }
-
-        public bool MatchOperator(out Token token)
-        {
-            throw new NotImplementedException();
-        }
-
         char Read() => _input[_pos++];
+
+        char Peek() => Peek(0);
 
         void Forward() => _pos++;
 
@@ -123,6 +121,7 @@ namespace NS.CalviScript
             Forward();
         }
 
+        char Peek(int offset) => _input[_pos + offset];
 
         /// <summary>
         /// Checks if the current position has reached the End Of Input (EOI).
@@ -151,7 +150,7 @@ namespace NS.CalviScript
             do
             {
                 Forward();
-            } while( !IsEnd() && Peek() != '\r' && Peek() != '\n' );
+            } while (!IsEnd() && Peek() != '\r' && Peek() != '\n');
         }
 
         /// <summary>
@@ -197,10 +196,10 @@ namespace NS.CalviScript
             do
             {
                 Forward();
-            } while( !IsEnd() && IsWhiteSpace );
+            } while (!IsEnd() && IsWhiteSpace);
         }
 
-        bool IsNumber => char.IsDigit( Peek() );
+        bool IsNumber => char.IsDigit(Peek());
 
         /// <summary>
         /// Create a new <see cref="Token"/> and moves forward.
@@ -215,7 +214,7 @@ namespace NS.CalviScript
             if (Peek() == '0')
             {
                 Forward();
-                if( !IsEnd() && (IsNumber || IsIdentifier) ) return new Token( TokenType.Error, "0" + Peek() );
+                if (!IsEnd() && (IsNumber || IsIdentifier)) return new Token(TokenType.Error, "0" + Peek());
                 return new Token(TokenType.Number, '0');
             }
 
@@ -224,7 +223,7 @@ namespace NS.CalviScript
             {
                 sb.Append(Peek());
                 Forward();
-            } while( !IsEnd() && IsNumber );
+            } while (!IsEnd() && IsNumber);
 
             if (!IsEnd() && IsIdentifier)
             {
@@ -235,24 +234,24 @@ namespace NS.CalviScript
             return new Token(TokenType.Number, sb.ToString());
         }
 
-        bool IsIdentifier => char.IsLetter( Peek() ) || Peek() == '_';
+        bool IsIdentifier => char.IsLetter(Peek()) || Peek() == '_';
 
         Token HandleIdentifier()
         {
-            Debug.Assert( IsIdentifier );
+            Debug.Assert(IsIdentifier);
 
             StringBuilder sb = new StringBuilder();
             do
             {
-                sb.Append( Peek() );
+                sb.Append(Peek());
                 Forward();
-            } while( !IsEnd() && ( IsIdentifier || char.IsDigit( Peek() ) ) );
+            } while (!IsEnd() && (IsIdentifier || char.IsDigit(Peek())));
 
             string identifier = sb.ToString();
-            if( identifier == "var" ) return new Token( TokenType.Var, identifier );
-            if( identifier == "while" ) return new Token( TokenType.While, identifier );
-            if( identifier == "function" ) return new Token( TokenType.Function, identifier );
-            return new Token( TokenType.Identifier, identifier );
+            if (identifier == "var") return new Token(TokenType.Var, identifier);
+            if (identifier == "while") return new Token(TokenType.While, identifier);
+            if (identifier == "function") return new Token(TokenType.Function, identifier);
+            return new Token(TokenType.Identifier, identifier);
         }
     }
 }

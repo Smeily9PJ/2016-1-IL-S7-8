@@ -19,7 +19,7 @@ namespace NS.CalviScript
             List<IExpr> statements = new List<IExpr>();
             while( !_tokenizer.MatchToken( TokenType.End ) )
             {
-                var s = Block( false ) ?? Statement();
+                IExpr s = Block( false ) ?? Statement();
                 if( s is ErrorExpr ) return s;
                 statements.Add( s );
             }
