@@ -35,7 +35,7 @@ namespace NS.CalviScript
                 return expected ? new ErrorExpr( "Expected Block." ) : null;
             }
             List<IExpr> statements = new List<IExpr>();
-            using( openScope ? _synScope.OpenScope() : null )
+            using( openScope ? _synScope.OpenScope( false ) : null )
             {
                 while (!_tokenizer.MatchToken(TokenType.CloseCurly))
                 {
@@ -208,7 +208,7 @@ namespace NS.CalviScript
             if( !_tokenizer.MatchToken( TokenType.LeftParenthesis ) )
                 return CreateErrorExpr( "(" );
 
-            using( _synScope.OpenScope() )
+            using( _synScope.OpenScope( true ) )
             {
                 var parameters = new List<VarDeclExpr>();
                 while( _tokenizer.CurrentToken.Type == TokenType.Identifier )
@@ -227,7 +227,7 @@ namespace NS.CalviScript
                 BlockExpr body = Block( expected: true, openScope: false ) as BlockExpr;
                 if( body == null ) return null;
 
-                return new FunDeclExpr( parameters, body );
+                return new FunDeclExpr( parameters, body, _synScope.CurrentClosureRequired );
             }
         }
 
