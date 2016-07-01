@@ -51,7 +51,8 @@ var test2 = test * 3;";
             InfixStringVisitor printer = new InfixStringVisitor();
             string p = printer.Visit( expr );
 
-            Assert.That( p, Is.EqualTo( "var f = function( a, b ){}" ) );
+            Assert.That( p.Replace( " ", string.Empty ), 
+                            Is.EqualTo( "{varf=function(vara,varb){}f(3,(4+1))}" ) );
 
         }
     }
