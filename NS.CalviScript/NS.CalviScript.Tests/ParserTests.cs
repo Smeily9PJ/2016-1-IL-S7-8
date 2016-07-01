@@ -41,9 +41,9 @@ var test2 = test * 3;";
         public void parsing_function_declarations()
         {
             string text = @"
-var f = function( a, b ) { };
-f( 3, 4+1 );
-";
+                var f = function( a, b ) { };
+                f( 3, 4+1 );
+                ";
             Tokenizer tokenizer = new Tokenizer( text );
             Parser sut = new Parser( tokenizer );
 
